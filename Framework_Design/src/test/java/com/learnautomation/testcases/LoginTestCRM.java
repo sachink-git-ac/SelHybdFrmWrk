@@ -11,6 +11,7 @@ public class LoginTestCRM extends BaseClass
 	@Test
 	public void loginApp()
 	{
+		// New comment added for GitHub Commit
 		logger=extent.createTest("Login To CRM");
 		LoginPage loginPage= PageFactory.initElements(driver, LoginPage.class);
 		logger.info("Application is started");
