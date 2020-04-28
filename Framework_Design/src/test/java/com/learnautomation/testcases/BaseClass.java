@@ -7,6 +7,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Parameters;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
@@ -37,11 +38,18 @@ public class BaseClass
 		Reporter.log("Setting Done - Test can be started", true);
 	}
 	
+	@Parameters({"browser","urlToBeTested"})
 	@BeforeClass
-	public void setUp()
+	public void setUp(String browser, String url)
 	{
 		Reporter.log("Initalizing Browser and launching application", true);
-		driver=BrowserFactory.startApplication(driver, config.getBrowser(), config.getStageURL());
+		
+		//driver=BrowserFactory.startApplication(driver, config.getBrowser(), config.getStageURL());
+		// Above code for passing values from config file 
+		//below changes are done to pass browser and url parameter from maven build / pom.xml
+		
+		driver=BrowserFactory.startApplication(driver, browser, url);
+		
 		Reporter.log("Browser Started and Application Launched", true);
 	}
 	
